@@ -54,6 +54,9 @@
                                         <color key="textColor" red="0.08235294118" green="0.13725490200000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="lentField:" destination="kPT-gh-z4S" eventType="editingDidEnd" id="QOp-7o-RkN"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </view>
@@ -126,14 +129,24 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="zt5-Wq-mrV" appends="YES" id="hKX-AP-KNL"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="iak-z0-mxB"/>
                     <connections>
                         <outlet property="forField" destination="ILx-le-uhS" id="aCq-Wl-apT"/>
                         <outlet property="lentField" destination="9ye-f3-m2M" id="d96-aV-FTp"/>
+                        <outlet property="nextButton" destination="wf6-7n-EeO" id="rcI-uy-pbW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vg-aH-xUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zt5-Wq-mrV">
+                    <connections>
+                        <action selector="didTap:" destination="kPT-gh-z4S" id="5nk-op-SoC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5.5999999999999996" y="71.514242878560722"/>
         </scene>
@@ -172,6 +185,9 @@
                                         <rect key="frame" x="330" y="30" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="close-icon-gray"/>
+                                        <connections>
+                                            <action selector="didPressX:" destination="MTQ-gZ-NUy" eventType="touchUpInside" id="e8E-sA-wbj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,12 +222,12 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.83921568629999999" green="0.84705882349999995" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for friends" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eLA-Dh-JBp">
-                                        <rect key="frame" x="-1" y="-3" width="331" height="36"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search for friends" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eLA-Dh-JBp">
+                                        <rect key="frame" x="-1" y="-4" width="331" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.08235294118" green="0.13725490200000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="24"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
                             </view>
@@ -219,9 +235,17 @@
                                 <rect key="frame" x="0.0" y="263" width="375" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Find Friends" id="GUM-c8-zC1">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="MTQ-gZ-NUy" id="g7d-Fi-7Cx"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="85" id="p6W-S5-IT6" customClass="FriendsCell" customModule="SplitIt" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p6W-S5-IT6" id="SaL-7H-XrF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
@@ -270,14 +294,34 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="qDD-X2-88L" appends="YES" id="YMp-0j-Mqu"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="aRc-zd-wlD"/>
                     <connections>
+                        <outlet property="search" destination="eLA-Dh-JBp" id="Cqw-9D-NpR"/>
+                        <outlet property="searchDisplayController" destination="XvO-YD-sba" id="Erg-Fc-Jfr"/>
                         <outlet property="tableView" destination="fF1-lD-sv3" id="Abe-wa-kET"/>
                         <outlet property="totalLabel" destination="GdD-IG-41p" id="gXW-dz-fYc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kA9-lF-2YS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="qDD-X2-88L">
+                    <connections>
+                        <action selector="didTap:" destination="MTQ-gZ-NUy" id="bEZ-gF-u6N"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <searchDisplayController id="XvO-YD-sba">
+                    <connections>
+                        <outlet property="delegate" destination="MTQ-gZ-NUy" id="J4x-ZV-Vc3"/>
+                        <outlet property="searchBar" destination="GUM-c8-zC1" id="mgD-SC-3ij"/>
+                        <outlet property="searchContentsController" destination="MTQ-gZ-NUy" id="DEb-O1-Urs"/>
+                        <outlet property="searchResultsDataSource" destination="MTQ-gZ-NUy" id="4Er-xF-4ON"/>
+                        <outlet property="searchResultsDelegate" destination="MTQ-gZ-NUy" id="tXI-Op-oOk"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="738" y="72"/>
         </scene>
@@ -613,12 +657,12 @@
         <!--Request Success View Controller-->
         <scene sceneID="5ZF-WG-E5x">
             <objects>
-                <viewController id="b6e-yQ-bot" customClass="RequestSuccessViewController" customModule="SplitIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="b6e-yQ-bot" customClass="RequestSuccessViewController" customModule="SplitIt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k5x-as-f8d"/>
                         <viewControllerLayoutGuide type="bottom" id="OBZ-zG-FFh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lNz-GG-ms0">
+                    <view key="view" alpha="0.80000000000000004" contentMode="scaleToFill" id="lNz-GG-ms0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -635,9 +679,18 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0Kg-p7-Uon" appends="YES" id="V8t-av-ABZ"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5M-h1-dAM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0Kg-p7-Uon">
+                    <connections>
+                        <action selector="didTap:" destination="b6e-yQ-bot" id="LEY-1E-tPf"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3068" y="72"/>
         </scene>
