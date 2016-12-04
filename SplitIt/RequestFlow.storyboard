@@ -23,7 +23,7 @@
         <!--Request View Controller-->
         <scene sceneID="MyJ-7p-Kuo">
             <objects>
-                <viewController storyboardIdentifier="RequestFlowSB" id="kPT-gh-z4S" customClass="RequestViewController" customModule="SplitIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RequestFlowSB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kPT-gh-z4S" customClass="RequestViewController" customModule="SplitIt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cIk-pf-hgN"/>
                         <viewControllerLayoutGuide type="bottom" id="QJa-B5-Otq"/>
@@ -121,7 +121,7 @@
                                     <color key="titleColor" red="0.49803921569999998" green="0.57254901960000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="MTQ-gZ-NUy" kind="show" id="oTM-Tq-Ur4"/>
+                                    <segue destination="MTQ-gZ-NUy" kind="show" id="dhy-iW-Bxq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,7 +131,6 @@
                     <connections>
                         <outlet property="forField" destination="ILx-le-uhS" id="aCq-Wl-apT"/>
                         <outlet property="lentField" destination="9ye-f3-m2M" id="d96-aV-FTp"/>
-                        <segue destination="MTQ-gZ-NUy" kind="show" identifier="addBillToSplitSegue" id="j0X-3g-FJQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vg-aH-xUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,10 +215,36 @@
                                     </textField>
                                 </subviews>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fF1-lD-sv3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fF1-lD-sv3">
                                 <rect key="frame" x="0.0" y="263" width="375" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendsCell" rowHeight="85" id="p6W-S5-IT6" customClass="FriendsCell" customModule="SplitIt" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p6W-S5-IT6" id="SaL-7H-XrF">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="userImage-Blank" translatesAutoresizingMaskIntoConstraints="NO" id="BJX-kC-vPS">
+                                                    <rect key="frame" x="16" y="8" width="65" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wYB-mG-zMZ">
+                                                    <rect key="frame" x="104" y="30" width="200" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactDisplay-Light" family="SF Compact Display" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="wYB-mG-zMZ" id="6fG-m6-Br2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nV-y1-jaz" userLabel="SecondaryButtonView">
                                 <rect key="frame" x="0.0" y="549" width="375" height="118"/>
@@ -246,13 +271,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aRc-zd-wlD"/>
                     <connections>
-                        <outlet property="totalLabel" destination="GdD-IG-41p" id="ode-yR-5D3"/>
+                        <outlet property="tableView" destination="fF1-lD-sv3" id="Abe-wa-kET"/>
+                        <outlet property="totalLabel" destination="GdD-IG-41p" id="gXW-dz-fYc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kA9-lF-2YS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="792.79999999999995" y="71.514242878560722"/>
+            <point key="canvasLocation" x="738" y="72"/>
         </scene>
         <!--Request Split View Controller-->
         <scene sceneID="avd-aH-jva">
@@ -363,10 +390,45 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v01-YJ-ccZ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v01-YJ-ccZ">
                                 <rect key="frame" x="0.0" y="262" width="375" height="405"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomTableViewCell" rowHeight="85" id="7IG-Wd-uRM" customClass="CustomTableViewCell" customModule="SplitIt" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7IG-Wd-uRM" id="FS1-c5-lUr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLo-U1-4yN">
+                                                    <rect key="frame" x="303" y="32" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactDisplay-Light" family="SF Compact Display" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="userImage-Blank" translatesAutoresizingMaskIntoConstraints="NO" id="XRD-Aw-r0N">
+                                                    <rect key="frame" x="19" y="8" width="65" height="65"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRS-hW-f8t">
+                                                    <rect key="frame" x="98" y="32" width="175" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactDisplay-Light" family="SF Compact Display" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userName" destination="zRS-hW-f8t" id="JbS-e0-uld"/>
+                                            <outlet property="userPayment" destination="SLo-U1-4yN" id="gjB-ec-GkL"/>
+                                            <outlet property="userPhoto" destination="XRD-Aw-r0N" id="jOm-Ka-lUL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MuW-qe-VA4" userLabel="SecondaryButtonView">
                                 <rect key="frame" x="0.0" y="549" width="375" height="118"/>
@@ -395,6 +457,7 @@
                     </view>
                     <connections>
                         <outlet property="lentTotal" destination="YFv-hb-FqX" id="tPZ-oH-507"/>
+                        <outlet property="tableView" destination="v01-YJ-ccZ" id="uv1-hG-7pw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="se9-kd-trX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,7 +657,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aer-IA-niz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-879" y="72"/>
+            <point key="canvasLocation" x="-726" y="72"/>
         </scene>
     </scenes>
     <resources>
@@ -604,8 +667,6 @@
         <image name="primary-button-shell" width="291" height="83"/>
         <image name="secondary-button-shell" width="273" height="65"/>
         <image name="success-check" width="217" height="218"/>
+        <image name="userImage-Blank" width="124" height="124"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="oTM-Tq-Ur4"/>
-    </inferredMetricsTieBreakers>
 </document>
