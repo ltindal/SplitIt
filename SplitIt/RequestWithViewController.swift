@@ -8,17 +8,18 @@
 
 import UIKit
 
-class RequestWithViewController: UIViewController, UITableViewDataSource,UISearchResultsUpdating {
+class RequestWithViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet weak var totalLabel: UILabel!
     var text: String!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var search: UITextField!
     
     let recents = ["Aaron Bailey", "Lauren Tindal", "Charlie Codepath", "Emmeline Kim", "Amrutha Krishnan", "Alex Watson", "Andrea Tovar", "Lisa Johnson", "Linda Thompson", "Laura Lee"]
     
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
+    var checked = [Bool]()
+    var selected = String()
     
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -36,9 +37,11 @@ class RequestWithViewController: UIViewController, UITableViewDataSource,UISearc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //tableView.delegate = self
+        tableView.delegate = self
         tableView.dataSource = self
-        //search.delegate = self
+        self.tableView.allowsSelection = true
+        self.tableView.allowsMultipleSelection = true
+        self.tableView.allowsMultipleSelectionDuringEditing = true
         
         totalLabel.text = text
         
@@ -49,6 +52,10 @@ class RequestWithViewController: UIViewController, UITableViewDataSource,UISearc
             controller.searchBar.sizeToFit()
             
             self.tableView.tableHeaderView = controller.searchBar
+            
+            controller.searchBar.placeholder = "Search for friends"
+            controller.searchBar.sizeToFit()
+
             
             return controller
         })()
@@ -89,41 +96,56 @@ class RequestWithViewController: UIViewController, UITableViewDataSource,UISearc
         }
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell") as! FriendsCell
-        
-        //let name = names[indexPath.row]
-        //let newName = newNames[indexPath.row]
         let recent = recents[indexPath.row]
         
+        /*if (some condition to initially checkmark a row)
+        cell.accessoryType = .Checkmark
+        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.Bottom)
+    } else {
+    cell.accessoryType = .None
+    }*/
+    
         if (self.resultSearchController.isActive) {
-            cell.textLabel?.text = filteredTableData[indexPath.row]
+            cell.label.text = filteredTableData[indexPath.row]
             
             return cell
         }
         else {
-            cell.textLabel?.text = recents[indexPath.row]
+            cell.label.text = recents[indexPath.row]
             
             return cell
         }
         
-        //cell.label.text = recent
+        cell.accessoryType = UITableViewCellAccessoryType.checkmark
         
-        //useful for arrays of data
         
-        //return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         print("You selected cell #\(indexPath.row)!")
     }
+    
+    /*public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        print("You selected cell #\(indexPath.row)!")
+        
+        /*if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+                checked[indexPath.row] = false
+            } else {
+                cell.accessoryType = .checkmark
+                checked[indexPath.row] = true
+            }
+        }*/
+        
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            cell.accessoryType = .checkmark
+        }
+    }*/
 
     
     @IBAction func didTap(_ sender: UITapGestureRecognizer) {

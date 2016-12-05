@@ -10,9 +10,13 @@ import UIKit
 
 class RequestReviewViewController: UIViewController {
 
+    //var forStringPassed = ""
+    @IBOutlet weak var forField: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        //forField.text = forStringPassed
         // Do any additional setup after loading the view.
     }
 

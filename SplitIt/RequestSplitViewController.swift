@@ -48,7 +48,8 @@ class RequestSplitViewController: UIViewController, UITableViewDelegate, UITable
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let totalPay = Int(lentTotal.text!) ?? 0
-        var payments = [totalPay/names.count]
+        let payments = totalPay/(names.count + 1)
+        let userPayment = String(describing: payments)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
 
@@ -56,7 +57,8 @@ class RequestSplitViewController: UIViewController, UITableViewDelegate, UITable
         
         //useful for arrays of data
         cell.userName.text = name
-        cell.userPayment.text = String(describing: payments)
+        //cell.userPayment.text = String(format: "$%.2f", payments)
+        cell.userPayment.text = userPayment
         
         return cell
     }
