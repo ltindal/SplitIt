@@ -19,6 +19,7 @@
 		3DE1CE191DF741B500B95344 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE1CE101DF741B500B95344 /* MobileCoreServices.framework */; };
 		3DE1CE1A1DF741B500B95344 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE1CE111DF741B500B95344 /* SafariServices.framework */; };
 		3DE1CE1B1DF741B500B95344 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE1CE121DF741B500B95344 /* SystemConfiguration.framework */; };
+		3DE1CE1D1DF751A900B95344 /* NewFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE1CE1C1DF751A900B95344 /* NewFriendsCell.swift */; };
 		9316DCC71DED384600ED01E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316DCC61DED384600ED01E7 /* AppDelegate.swift */; };
 		9316DCC91DED384600ED01E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316DCC81DED384600ED01E7 /* ViewController.swift */; };
 		9316DCCC1DED384600ED01E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9316DCCA1DED384600ED01E7 /* Main.storyboard */; };
@@ -95,6 +96,7 @@
 		3DE1CE101DF741B500B95344 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		3DE1CE111DF741B500B95344 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		3DE1CE121DF741B500B95344 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3DE1CE1C1DF751A900B95344 /* NewFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFriendsCell.swift; sourceTree = "<group>"; };
 		5E1A3A76367C4EDBA2FE6111 /* Pods_SplitItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64ED58153748831D7F8A2ADE /* Pods-SplitItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitItUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SplitItUITests/Pods-SplitItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9316DCC31DED384600ED01E7 /* SplitIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				9316DD071DED5DBE00ED01E7 /* PayFlow.storyboard */,
+				3DE1CE1C1DF751A900B95344 /* NewFriendsCell.swift */,
 				9316DD311DED615900ED01E7 /* PayToViewController.swift */,
 				9316DD331DED617300ED01E7 /* PayReviewViewController.swift */,
 				9316DD351DED618900ED01E7 /* PaySuccessViewController.swift */,
@@ -656,6 +659,7 @@
 			files = (
 				9316DD321DED615900ED01E7 /* PayToViewController.swift in Sources */,
 				9316DD201DED5FA900ED01E7 /* WelcomeViewController.swift in Sources */,
+				3DE1CE1D1DF751A900B95344 /* NewFriendsCell.swift in Sources */,
 				9316DCC91DED384600ED01E7 /* ViewController.swift in Sources */,
 				9316DD361DED618900ED01E7 /* PaySuccessViewController.swift in Sources */,
 				9316DD341DED617300ED01E7 /* PayReviewViewController.swift in Sources */,

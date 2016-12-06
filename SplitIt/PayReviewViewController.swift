@@ -12,6 +12,8 @@ class PayReviewViewController: UIViewController, PayPalPaymentDelegate {
     
     var text: String!
     @IBOutlet weak var totalPay: UILabel!
+    @IBOutlet weak var payPalButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
     
     var environment:String = PayPalEnvironmentNoNetwork {
         willSet(newEnvironment) {
@@ -25,7 +27,7 @@ class PayReviewViewController: UIViewController, PayPalPaymentDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         totalPay.text = text
 
         //PayPal Setup
@@ -87,7 +89,7 @@ class PayReviewViewController: UIViewController, PayPalPaymentDelegate {
         
         let total = subtotal.adding(shipping).adding(tax)
         
-        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Pay to Amrutha", intent: .sale)
+        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Pay Amrutha for Dinner", intent: .sale)
         
         payment.items = items
         payment.paymentDetails = paymentDetails
@@ -103,9 +105,10 @@ class PayReviewViewController: UIViewController, PayPalPaymentDelegate {
             // to handle that here.
             print("Payment not processalbe: \(payment)")
         }
-        
     
     }
+    
+    
     
     
     @IBAction func didPressDone(_ sender: Any) {
