@@ -9,9 +9,14 @@
 import UIKit
 
 class PayReviewViewController: UIViewController {
+    
+    var text: String!
+    @IBOutlet weak var totalPay: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        totalPay.text = text
 
         // Do any additional setup after loading the view.
     }
@@ -21,15 +26,9 @@ class PayReviewViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func didPressBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
-    */
+    
 
 }

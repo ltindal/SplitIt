@@ -15,16 +15,36 @@ class RequestSplitViewController: UIViewController, UITableViewDelegate, UITable
     let names = ["Aaron Bailey", "Amrutha Krishnan", "Lauren Tindal"]
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView2: UITableView!
+    @IBOutlet weak var evenlyButton: UIButton!
+    @IBOutlet weak var customButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView2.isHidden = true
+        tableView2.delegate = self
+        tableView2.dataSource = self
 
         lentTotal.text = text
     }
     
+    
+    @IBAction func didPressEven(_ sender: Any) {
+        tableView.isHidden = false
+        tableView2.isHidden = true
+        evenlyButton.isSelected = true
+        customButton.isSelected = false
+    }
+    
+    @IBAction func didPressCustom(_ sender: Any) {
+        tableView.isHidden = true
+        tableView2.isHidden = false
+        evenlyButton.isSelected = false
+        customButton.isSelected = true
+    }
     
     @IBAction func backArrow(_ sender: Any) {
         navigationController!.popViewController(animated: true)
@@ -45,6 +65,10 @@ class RequestSplitViewController: UIViewController, UITableViewDelegate, UITable
         return names.count
     }
     
+    public func tableView2(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return names.count
+    }
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let totalPay = Int(lentTotal.text!) ?? 0
@@ -62,6 +86,30 @@ class RequestSplitViewController: UIViewController, UITableViewDelegate, UITable
         
         return cell
     }
+    
+    public func tableView2(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let totalPay = Int(lentTotal.text!) ?? 0
+        let payments = totalPay/(names.count + 1)
+        let userPayment = String(describing: payments)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewTableViewCell") as! NewTableViewCell
+        
+        let name = names[indexPath.row]
+        
+        //useful for arrays of data
+        cell.userName.text = name
+        //cell.userPayment.text = String(format: "$%.2f", payments)
+        cell.userPayment.text = userPayment
+        
+        return cell
+    }
+
+    
+    
+    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("hi")
+    }*/
 
     
 

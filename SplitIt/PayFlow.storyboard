@@ -97,21 +97,39 @@
                                         <rect key="frame" x="5" y="30" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="back-left-icon"/>
+                                        <connections>
+                                            <action selector="didPressBack:" destination="HCL-hD-zei" eventType="touchUpInside" id="L1e-6m-pSn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-qA-N8a">
                                         <rect key="frame" x="330" y="30" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="close-icon-gray"/>
+                                        <connections>
+                                            <action selector="didPressX:" destination="HCL-hD-zei" eventType="touchUpInside" id="Tbx-cd-vS1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYu-5Y-Oud">
+                                <rect key="frame" x="51" y="582" width="273" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Medium" family="SF Compact Display" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="2"/>
+                                <state key="normal" title="Next" backgroundImage="secondary-button-shell">
+                                    <color key="titleColor" red="0.49803921569999998" green="0.57254901960000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bbQ-tO-9dS" kind="show" id="fzc-df-h5o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="sTU-hW-HgW"/>
                     <connections>
-                        <segue destination="bbQ-tO-9dS" kind="show" identifier="sendAmountToPaySegue" id="gAJ-aL-l34"/>
+                        <outlet property="payAmount" destination="jqa-do-bdD" id="XzG-AE-fvk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Rt-Ef-y2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,11 +163,17 @@
                                         <rect key="frame" x="5" y="30" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="back-left-icon"/>
+                                        <connections>
+                                            <action selector="didPressBack:" destination="bbQ-tO-9dS" eventType="touchUpInside" id="OZC-ck-skA"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sj9-8H-oKT">
                                         <rect key="frame" x="330" y="30" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="close-icon-gray"/>
+                                        <connections>
+                                            <action selector="didPressX:" destination="bbQ-tO-9dS" eventType="touchUpInside" id="G3b-I0-lgI"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -223,6 +247,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="totalLabel" destination="XjE-ZN-XWT" id="HQx-wf-jHf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iFD-8P-4w2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -273,6 +300,9 @@
                                         <rect key="frame" x="5" y="30" width="40" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="back-left-icon"/>
+                                        <connections>
+                                            <action selector="didPressBack:" destination="gIP-SS-KEs" eventType="touchUpInside" id="18x-kR-jNE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -363,6 +393,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="totalPay" destination="CLb-jZ-EuN" id="OYN-pd-lYy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPI-W5-meO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -371,12 +404,12 @@
         <!--Pay Success View Controller-->
         <scene sceneID="1km-Di-H7Z">
             <objects>
-                <viewController id="TTH-UT-AQz" customClass="PaySuccessViewController" customModule="SplitIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overCurrentContext" id="TTH-UT-AQz" customClass="PaySuccessViewController" customModule="SplitIt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZBW-Eg-ZzM"/>
                         <viewControllerLayoutGuide type="bottom" id="BxC-bL-LrZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="l67-MH-g13">
+                    <view key="view" alpha="0.80000000000000004" contentMode="scaleToFill" id="l67-MH-g13">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -393,9 +426,18 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="w3A-LR-eKp" appends="YES" id="di8-SN-5dP"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Qv-Wj-UOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="w3A-LR-eKp">
+                    <connections>
+                        <action selector="didTap:" destination="TTH-UT-AQz" id="r1r-8o-v8Z"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2305" y="-15"/>
         </scene>

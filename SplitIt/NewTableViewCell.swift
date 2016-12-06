@@ -1,19 +1,18 @@
 //
-//  FriendsCell.swift
+//  NewTableViewCell.swift
 //  SplitIt
 //
-//  Created by Lauren Tindal on 12/3/16.
+//  Created by Lauren Tindal on 12/5/16.
 //  Copyright © 2016 Aaron Bailey. All rights reserved.
 //
 
 import UIKit
 
-class FriendsCell: UITableViewCell {
+class NewTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var selectDefault: UIImageView!
-    @IBOutlet weak var selectActive: UIImageView!
-    
+    @IBOutlet weak var userPayment: UILabel!
+    @IBOutlet weak var userName: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D4DCF671DF3931A00CDF846 /* FriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4DCF661DF3931A00CDF846 /* FriendsCell.swift */; };
 		3D62924F1DF417D700FCA33E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D62924E1DF417D700FCA33E /* CustomTableViewCell.swift */; };
+		3D731F241DF6959A00CE76E8 /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D731F231DF6959A00CE76E8 /* NewTableViewCell.swift */; };
 		9316DCC71DED384600ED01E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316DCC61DED384600ED01E7 /* AppDelegate.swift */; };
 		9316DCC91DED384600ED01E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9316DCC81DED384600ED01E7 /* ViewController.swift */; };
 		9316DCCC1DED384600ED01E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9316DCCA1DED384600ED01E7 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		3D4DCF661DF3931A00CDF846 /* FriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCell.swift; sourceTree = "<group>"; };
 		3D62924E1DF417D700FCA33E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		3D731F231DF6959A00CE76E8 /* NewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		9316DCC31DED384600ED01E7 /* SplitIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SplitIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9316DCC61DED384600ED01E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9316DCC81DED384600ED01E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				9316DD051DED5DB100ED01E7 /* RequestFlow.storyboard */,
+				3D731F231DF6959A00CE76E8 /* NewTableViewCell.swift */,
 				3D62924E1DF417D700FCA33E /* CustomTableViewCell.swift */,
 				3D4DCF661DF3931A00CDF846 /* FriendsCell.swift */,
 				9316DD291DED60B100ED01E7 /* RequestSplitViewController.swift */,
@@ -441,6 +444,7 @@
 				9316DD301DED612800ED01E7 /* RequestSuccessViewController.swift in Sources */,
 				9316DD2A1DED60B100ED01E7 /* RequestSplitViewController.swift in Sources */,
 				9316DCF51DED3C4A00ED01E7 /* SignInViewController.swift in Sources */,
+				3D731F241DF6959A00CE76E8 /* NewTableViewCell.swift in Sources */,
 				9316DD221DED5FD400ED01E7 /* OweViewController.swift in Sources */,
 				9316DD1C1DED5F5200ED01E7 /* HistoryViewController.swift in Sources */,
 				3D62924F1DF417D700FCA33E /* CustomTableViewCell.swift in Sources */,

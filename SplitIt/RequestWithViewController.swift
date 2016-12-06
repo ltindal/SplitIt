@@ -13,27 +13,15 @@ class RequestWithViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var totalLabel: UILabel!
     var text: String!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var searchBar: UISearchBar!
+
     let recents = ["Aaron Bailey", "Lauren Tindal", "Charlie Codepath", "Emmeline Kim", "Amrutha Krishnan", "Alex Watson", "Andrea Tovar", "Lisa Johnson", "Linda Thompson", "Laura Lee"]
     
     var filteredTableData = [String]()
     var resultSearchController = UISearchController()
     var checked = [Bool]()
     var selected = String()
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        
-        filteredTableData.removeAll(keepingCapacity: false)
-        
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (recents as NSArray).filtered(using: searchPredicate)
-        filteredTableData = array as! [String]
-        
-        self.tableView.reloadData()
-        
-    }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +31,13 @@ class RequestWithViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.allowsMultipleSelection = true
         self.tableView.allowsMultipleSelectionDuringEditing = true
         
+        if #available(iOS 9.0, *) {
+            self.resultSearchController.loadViewIfNeeded()// iOS 9
+        } else {
+            // Fallback on earlier versions
+            let _ = self.resultSearchController.view          // iOS 8
+        }
+        
         totalLabel.text = text
         
         self.resultSearchController = ({
@@ -50,6 +45,8 @@ class RequestWithViewController: UIViewController, UITableViewDelegate, UITableV
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
+            controller.searchBar.tintColor = UIColor(red:0.64, green:0.64, blue:0.90, alpha:1.0)
+            controller.searchBar.barTintColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
             
             self.tableView.tableHeaderView = controller.searchBar
             
@@ -64,6 +61,18 @@ class RequestWithViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.reloadData()
         
 
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        filteredTableData.removeAll(keepingCapacity: false)
+        
+        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
+        let array = (recents as NSArray).filtered(using: searchPredicate)
+        filteredTableData = array as! [String]
+        
+        self.tableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,6 +96,8 @@ class RequestWithViewController: UIViewController, UITableViewDelegate, UITableV
         navigationController!.popViewController(animated: true)
     }
     
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.resultSearchController.isActive) {
             return self.filteredTableData.count
@@ -101,56 +112,36 @@ class RequestWithViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendsCell") as! FriendsCell
         let recent = recents[indexPath.row]
         
-        /*if (some condition to initially checkmark a row)
-        cell.accessoryType = .Checkmark
-        tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: UITableViewScrollPosition.Bottom)
-    } else {
-    cell.accessoryType = .None
-    }*/
-    
         if (self.resultSearchController.isActive) {
             cell.label.text = filteredTableData[indexPath.row]
-            
             return cell
         }
         else {
             cell.label.text = recents[indexPath.row]
             
+            if let index = self.tableView.indexPathForSelectedRow{
+                cell.selectActive.isHidden = false
+                cell.selectDefault.isHidden = true
+            } else {
+                cell.selectActive.isHidden = true
+                cell.selectDefault.isHidden = false
+            }
             return cell
         }
         
-        cell.accessoryType = UITableViewCellAccessoryType.checkmark
-        
-        
     }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("You selected cell #\(indexPath.row)!")
-    }
-    
-    /*public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        print("You selected cell #\(indexPath.row)!")
-        
-        /*if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-                checked[indexPath.row] = false
-            } else {
-                cell.accessoryType = .checkmark
-                checked[indexPath.row] = true
-            }
-        }*/
-        
-        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
-            cell.accessoryType = .checkmark
-        }
-    }*/
 
+
+func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("You selected cell #\(indexPath.row)!")
+    self.performSegue(withIdentifier: "scanPageSegue", sender: self)
+}
     
-    @IBAction func didTap(_ sender: UITapGestureRecognizer) {
+    
+    @IBAction func didTap(_ sender: Any) {
         view.endEditing(true)
     }
 
-
 }
+
+
