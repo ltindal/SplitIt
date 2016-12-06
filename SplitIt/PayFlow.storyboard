@@ -316,13 +316,23 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HuQ-KB-08V">
-                                        <rect key="frame" x="42" y="36" width="291" height="83"/>
+                                        <rect key="frame" x="43" y="-11" width="291" height="83"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="SFCompactDisplay-Medium" family="SF Compact Display" pointSize="16"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="26"/>
-                                        <state key="normal" title="Looks Good! Send Bill" backgroundImage="primary-button-shell"/>
+                                        <state key="normal" title="Pay with PayPal" backgroundImage="primary-button-shell"/>
                                         <connections>
-                                            <segue destination="TTH-UT-AQz" kind="showDetail" id="PKB-sQ-R18"/>
+                                            <action selector="didPressPay:" destination="gIP-SS-KEs" eventType="touchUpInside" id="PGk-XJ-Om5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nf-IB-Z22">
+                                        <rect key="frame" x="52" y="45" width="273" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Done" image="secondary-button-shell">
+                                            <color key="titleColor" red="0.55437967931907817" green="0.62600701827084126" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didPressDone:" destination="gIP-SS-KEs" eventType="touchUpInside" id="GiZ-jR-Jg3"/>
                                         </connections>
                                     </button>
                                 </subviews>
