@@ -65,44 +65,29 @@ class RequestSplitViewController: UIViewController, UITableViewDelegate, UITable
         return names.count
     }
     
-    public func tableView2(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return names.count
-    }
-    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let totalPay = Int(lentTotal.text!) ?? 0
         let payments = totalPay/(names.count + 1)
         let userPayment = String(describing: payments)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell") as! CustomTableViewCell
-
+        var cell:UITableViewCell?
         let name = names[indexPath.row]
         
-        //useful for arrays of data
-        cell.userName.text = name
-        //cell.userPayment.text = String(format: "$%.2f", payments)
-        cell.userPayment.text = userPayment
+        if tableView == self.tableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTable") as! CustomTableViewCell
+            cell.userName.text = name
+            cell.userPayment.text = userPayment
+            return cell
+            
+        }
         
-        return cell
-    }
-    
-    public func tableView2(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == self.tableView2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewTable") as! NewTableViewCell
+            cell.userName.text = name
+            return cell
+        }
         
-        let totalPay = Int(lentTotal.text!) ?? 0
-        let payments = totalPay/(names.count + 1)
-        let userPayment = String(describing: payments)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewTableViewCell") as! NewTableViewCell
-        
-        let name = names[indexPath.row]
-        
-        //useful for arrays of data
-        cell.userName.text = name
-        //cell.userPayment.text = String(format: "$%.2f", payments)
-        cell.userPayment.text = userPayment
-        
-        return cell
+        return cell!
     }
 
     

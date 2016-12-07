@@ -10,7 +10,7 @@ import UIKit
 
 class NewTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var userPayment: UILabel!
+    @IBOutlet weak var userPayment: UITextField!
     @IBOutlet weak var userName: UILabel!
 
     override func awakeFromNib() {

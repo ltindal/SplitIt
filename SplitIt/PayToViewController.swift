@@ -8,11 +8,15 @@
 
 import UIKit
 
-class PayToViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PayToViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
     @IBOutlet weak var totalLabel: UILabel!
     var text: String!
     @IBOutlet weak var tableView: UITableView!
+    
+    var filteredTableData = [String]()
+    var resultSearchController = UISearchController()
+    var selected = String()
     
     let recents = ["Aaron Bailey", "Lauren Tindal", "Charlie Codepath", "Emmeline Kim", "Amrutha Krishnan", "Alex Watson", "Andrea Tovar", "Lisa Johnson", "Linda Thompson", "Laura Lee"]
 
@@ -23,11 +27,38 @@ class PayToViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.delegate = self
 
         totalLabel.text = text
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            controller.searchBar.tintColor = UIColor(red:0.64, green:0.64, blue:0.90, alpha:1.0)
+            controller.searchBar.barTintColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.0)
+            
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            controller.searchBar.placeholder = "Search for friends"
+            controller.searchBar.sizeToFit()
+            
+            
+            return controller
+        })()
+        
+        // Reload the table
+        self.tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        filteredTableData.removeAll(keepingCapacity: false)
+        
+        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
+        let array = (recents as NSArray).filtered(using: searchPredicate)
+        filteredTableData = array as! [String]
+        
+        self.tableView.reloadData()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,43 +81,37 @@ class PayToViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return self.recents.count
-        /*if (self.resultSearchController.isActive) {
+        if (self.resultSearchController.isActive) {
             return self.filteredTableData.count
         }
         else {
             return self.recents.count
-        }*/
+        }
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewFriendsCell") as! NewFriendsCell
         let recent = recents[indexPath.row]
-        cell.userName.text = recents[indexPath.row]
-        return cell
+        //cell.userName.text = recents[indexPath.row]
+        //return cell
         
-        /*if (self.resultSearchController.isActive) {
-            cell.label.text = filteredTableData[indexPath.row]
+        if (self.resultSearchController.isActive) {
+            cell.userName.text = filteredTableData[indexPath.row]
             return cell
         }
         else {
-            cell.label.text = recents[indexPath.row]
-            
-            if let index = self.tableView.indexPathForSelectedRow{
-                cell.selectActive.isHidden = false
-                cell.selectDefault.isHidden = true
-            } else {
-                cell.selectActive.isHidden = true
-                cell.selectDefault.isHidden = false
-            }
+            cell.userName.text = recents[indexPath.row]
             return cell
-        }*/
+        }
         
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("You selected cell #\(indexPath.row)!")
+        
+        var selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath as IndexPath)!
+        selectedCell.contentView.backgroundColor = UIColor.red
         }
     
     
